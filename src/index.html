@@ -9,7 +9,7 @@
 <body class="bg-gray-100 p-6 font-sans">
   <div class="container mx-auto">
     
-    <div class="flex justify-between items-center mb-8">
+    <section class="flex justify-between items-center mb-8">
       <button onclick="openAddTaskModal()" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md">
         <span class="font-semibold">Add Task +</span>
       </button>
@@ -17,10 +17,10 @@
       <button onclick="openAddTaskModal()" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md">
         <span class="font-semibold">Add Multiple +</span>
       </button>
-    </div>
+    </section>
 
     <!-- Task Sections -->
-    <div class="grid grid-cols-3 gap-6">
+    <section class="grid grid-cols-3 gap-6">
       <div id="todo" class="task-section bg-white rounded-lg shadow-lg p-4" data-status="To Do">
         <h2 class="text-xl font-semibold flex items-center text-red-600 border-b-2 border-red-300 pb-2 mb-4">To Do</h2>
         <div class="space-y-4 task-list"></div>
@@ -35,7 +35,7 @@
         <h2 class="text-xl font-semibold flex items-center text-green-600 border-b-2 border-green-300 pb-2 mb-4">Done</h2>
         <div class="space-y-4 task-list"></div>
       </div>
-    </div>
+    </section>
   </div>
 
  
