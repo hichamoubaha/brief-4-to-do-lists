@@ -8,99 +8,39 @@
 </head>
 <body class="bg-gray-100 p-6 font-sans">
   <div class="container mx-auto">
-    
+    <!-- Header with Add Task buttons -->
     <div class="flex justify-between items-center mb-8">
-      <button class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md">
+      <button onclick="openAddTaskModal()" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md">
         <span class="font-semibold">Add Task +</span>
       </button>
-      <input type="text" placeholder="Search tasks..." class="border border-gray-300 rounded-lg px-4 py-2 w-1/2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      <button class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md">
+      <input id="search" oninput="filterTasks()" type="text" placeholder="Search tasks..." class="border border-gray-300 rounded-lg px-4 py-2 w-1/2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button onclick="openAddTaskModal()" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md">
         <span class="font-semibold">Add Multiple +</span>
       </button>
     </div>
 
     <!-- Task Sections -->
     <div class="grid grid-cols-3 gap-6">
-      <!-- To Do Section -->
-      <div class="bg-white rounded-lg shadow-lg p-4">
-        <h2 class="text-xl font-semibold flex items-center text-red-600 border-b-2 border-red-300 pb-2 mb-4">
-          To Do <span class="text-gray-500 ml-2">| 3</span>
-        </h2>
-        <div class="space-y-4">
-          <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg shadow-sm">
-            <p class="font-semibold text-gray-700">Brief Soutenances Croisées</p>
-            <div class="flex space-x-2 mt-3">
-              <button class="flex items-center bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                Delete
-              </button>
-              <button class="flex items-center bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5h2M12 6v13m4-4H8" />
-                </svg>
-                Edit
-              </button>
-            </div>
-          </div>
-          <!-- Repeat similar structure for other To Do tasks -->
-        </div>
+      <div id="todo" class="task-section bg-white rounded-lg shadow-lg p-4" data-status="To Do">
+        <h2 class="text-xl font-semibold flex items-center text-red-600 border-b-2 border-red-300 pb-2 mb-4">To Do</h2>
+        <div class="space-y-4 task-list"></div>
       </div>
 
-      <!-- In Progress Section -->
-      <div class="bg-white rounded-lg shadow-lg p-4">
-        <h2 class="text-xl font-semibold flex items-center text-yellow-600 border-b-2 border-yellow-300 pb-2 mb-4">
-          In Progress <span class="text-gray-500 ml-2">| 1</span>
-        </h2>
-        <div class="space-y-4">
-          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg shadow-sm">
-            <p class="font-semibold text-gray-700">WORKSHOP 2</p>
-            <div class="flex space-x-2 mt-3">
-              <button class="flex items-center bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                Delete
-              </button>
-              <button class="flex items-center bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5h2M12 6v13m4-4H8" />
-                </svg>
-                Edit
-              </button>
-            </div>
-          </div>
-        </div>
+      <div id="in-progress" class="task-section bg-white rounded-lg shadow-lg p-4" data-status="In Progress">
+        <h2 class="text-xl font-semibold flex items-center text-yellow-600 border-b-2 border-yellow-300 pb-2 mb-4">In Progress</h2>
+        <div class="space-y-4 task-list"></div>
       </div>
 
-      <!-- Done Section -->
-      <div class="bg-white rounded-lg shadow-lg p-4">
-        <h2 class="text-xl font-semibold flex items-center text-green-600 border-b-2 border-green-300 pb-2 mb-4">
-          Done <span class="text-gray-500 ml-2">| 2</span>
-        </h2>
-        <div class="space-y-4">
-          <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-lg shadow-sm">
-            <p class="font-semibold text-gray-700">Brief 5</p>
-            <div class="flex space-x-2 mt-3">
-              <button class="flex items-center bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                Delete
-              </button>
-              <button class="flex items-center bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5h2M12 6v13m4-4H8" />
-                </svg>
-                Edit
-              </button>
-            </div>
-          </div>
-          <!-- Repeat similar structure for other Done tasks -->
-        </div>
+      <div id="done" class="task-section bg-white rounded-lg shadow-lg p-4" data-status="Done">
+        <h2 class="text-xl font-semibold flex items-center text-green-600 border-b-2 border-green-300 pb-2 mb-4">Done</h2>
+        <div class="space-y-4 task-list"></div>
       </div>
     </div>
   </div>
+
+ 
+
+  
+  <script src="action.js"></script>
 </body>
 </html>
