@@ -5,28 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To Do List</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-700 p-4">
+<body class="bg-white p-4">
   <section class="container mx-auto">
     <!-- Header with Add Task buttons -->
     <div class="flex justify-between items-center mb-6">
-      <button onclick="openModal()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-black">Add Task +</button>
+      <button onclick="openModal()" class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black">Add Task +</button>
       <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1" />
-      <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-black">Add Multiple +</button>
+      <button class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black">Add Multiple +</button>
     </div>
-
+<br>
     <!-- Task Sections -->
     <section class="grid grid-cols-3 gap-4">
       <!-- To Do Section -->
       <div>
-        <h2 class="text-lg font-semibold">To Do <span class="text-gray-500">| </span></h2>
-        <hr class="border-t-2 border-red-400 mb-2">
+        <h2 class="text-red-500 font-semibold">To Do <span class="text-gray-500">| </span></h2>
+        <hr class="border-t-2 border-red-400 mb-4">
         <div class="space-y-2" id="todo-tasks">
-          <div class="border border-red-400 p-3 rounded">
+          <div class="border border-black p-3 rounded">
             <p class="font-semibold">presentation</p>
             <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400">Delete</button>
+              <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800">Edit</button>
             </div>
           </div>
         </div>
@@ -34,14 +35,14 @@
 
       <!-- In Progress Section -->
       <div>
-        <h2 class="text-lg font-semibold">In Progress <span class="text-gray-500">| </span></h2>
-        <hr class="border-t-2 border-yellow-400 mb-2">
+        <h2 class="text-orange-300 font-semibold">In Progress <span class="text-gray-500">| </span></h2>
+        <hr class="border-t-2 border-yellow-400 mb-4">
         <div class="space-y-2" id="inprogress-tasks">
-          <div class="border border-blue-400 p-3 rounded">
+          <div class="border border-black p-3 rounded">
             <p class="font-semibold">WORKSHOP </p>
             <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400">Delete</button>
+              <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800">Edit</button>
             </div>
           </div>
         </div>
@@ -49,14 +50,14 @@
 
       <!-- Done Section -->
       <div>
-        <h2 class="text-lg font-semibold">Done <span class="text-gray-500">| </span></h2>
-        <hr class="border-t-2 border-green-400 mb-2">
+        <h2 class="text-green-600 font-semibold">Done <span class="text-gray-500">| </span></h2>
+        <hr class="border-t-2 border-green-400 mb-4">
         <div class="space-y-2" id="done-tasks">
-          <div class="border border-red-400 p-3 rounded">
+          <div class="border border-black p-3 rounded">
             <p class="font-semibold">planification</p>
             <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-slate-400">Delete</button>
+              <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800">Edit</button>
             </div>
           </div>
         </div>
