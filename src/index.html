@@ -10,7 +10,7 @@
   <div class="container mx-auto">
     <!-- Header with Add Task buttons -->
     <div class="flex justify-between items-center mb-6">
-      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Task +</button>
+      <button onclick="openModal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Task +</button>
       <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1" />
       <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Multiple +</button>
     </div>
@@ -18,80 +18,92 @@
     <!-- Task Sections -->
     <div class="grid grid-cols-3 gap-4">
       <!-- To Do Section -->
-      <section>
-        <h2 class="text-lg font-semibold">To Do <span class="text-gray-500">| 3</span></h2>
-        <hr class="border-t-2 border-black mb-2">
-        <div class="space-y-2">
+      <div>
+        <h2 class="text-lg font-semibold">To Do <span class="text-gray-500">| </span></h2>
+        <hr class="border-t-2 border-red-400 mb-2">
+        <div class="space-y-2" id="todo-tasks">
           <div class="border border-red-400 p-3 rounded">
-            <p class="font-semibold"> presentation</p>
-            <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
-            </div>
-          </div>
-          
-        <div class="space-y-2">
-          <div class="border border-red-400 p-3 rounded">
-            <p class="font-semibold"> workshop</p>
+            <p class="font-semibold">presentation</p>
             <div class="flex space-x-2 mt-2">
               <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
               <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
             </div>
           </div>
         </div>
-        <div class="space-y-2">
-          <div class="border border-red-400 p-3 rounded">
-            <p class="font-semibold"> live coding</p>
-            <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
 
       <!-- In Progress Section -->
-      <section>
-        <h2 class="text-lg font-semibold">In Progress <span class="text-gray-500">| 1</span></h2>
-        <hr class="border-t-2 border-black mb-2">
-        <div class="space-y-2">
+      <div>
+        <h2 class="text-lg font-semibold">In Progress <span class="text-gray-500">| </span></h2>
+        <hr class="border-t-2 border-yellow-400 mb-2">
+        <div class="space-y-2" id="inprogress-tasks">
           <div class="border border-blue-400 p-3 rounded">
-            <p class="font-semibold">sujet d'veille</p>
+            <p class="font-semibold">WORKSHOP </p>
             <div class="flex space-x-2 mt-2">
               <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
               <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
             </div>
           </div>
         </div>
-        <div class="space-y-2">
-          <div class="border border-blue-400 p-3 rounded">
-            <p class="font-semibold"> workshop DOM</p>
-            <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
-            </div>
-          </div>
-        </div>
-       
-        
-      </section>
+      </div>
 
       <!-- Done Section -->
-      <section>
-        <h2 class="text-lg font-semibold">Done <span class="text-gray-500">| 2</span></h2>
-        <hr class="border-t-2 border-black mb-2">
-        <div class="space-y-2">
+      <div>
+        <h2 class="text-lg font-semibold">Done <span class="text-gray-500">| </span></h2>
+        <hr class="border-t-2 border-green-400 mb-2">
+        <div class="space-y-2" id="done-tasks">
           <div class="border border-red-400 p-3 rounded">
-            <p class="font-semibold"> Quize</p>
+            <p class="font-semibold">planification</p>
             <div class="flex space-x-2 mt-2">
               <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
               <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
             </div>
           </div>
-          <!-- Repeat similar structure for other Done tasks -->
         </div>
-      </section>
+      </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div id="taskModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded shadow-lg w-96">
+      <h2 class="text-lg font-semibold mb-4">Add New Task</h2>
+      <form id="taskForm">
+        <div class="mb-4">
+          <label for="taskTitle" class="block text-sm font-medium text-gray-700">Title</label>
+          <input type="text" id="taskTitle" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="taskDescription" class="block text-sm font-medium text-gray-700">Description</label>
+          <textarea id="taskDescription" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="taskStatus" class="block text-sm font-medium text-gray-700">Status</label>
+          <select id="taskStatus" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="taskDueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
+          <input type="date" id="taskDueDate" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="taskPriority" class="block text-sm font-medium text-gray-700">Priority</label>
+          <select id="taskPriority" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="P1" class="text-red-500">P1</option>
+            <option value="P2" class="text-yellow-500">P2</option>
+            <option value="P3" class="text-green-500">P3</option>
+          </select>
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button type="button" onclick="closeModal()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancel</button>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="action.js"></script>
 </body>
 </html>
