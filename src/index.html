@@ -6,41 +6,92 @@
   <title>To Do List</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 p-6 font-sans">
+<body class="bg-gray-100 p-4">
   <div class="container mx-auto">
-    
-    <section class="flex justify-between items-center mb-8">
-      <button onclick="openAddTaskModal()" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md">
-        <span class="font-semibold">Add Task +</span>
-      </button>
-      <input id="search" oninput="filterTasks()" type="text" placeholder="Search tasks..." class="border border-gray-300 rounded-lg px-4 py-2 w-1/2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      <button onclick="openAddTaskModal()" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md">
-        <span class="font-semibold">Add Multiple +</span>
-      </button>
-    </section>
+    <!-- Header with Add Task buttons -->
+    <div class="flex justify-between items-center mb-6">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Task +</button>
+      <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1" />
+      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Multiple +</button>
+    </div>
 
     <!-- Task Sections -->
-    <section class="grid grid-cols-3 gap-6">
-      <div id="todo" class="task-section bg-white rounded-lg shadow-lg p-4" data-status="To Do">
-        <h2 class="text-xl font-semibold flex items-center text-red-600 border-b-2 border-black pb-2 mb-4">To Do</h2>
-        <div class="space-y-4 task-list"></div>
-      </div>
+    <div class="grid grid-cols-3 gap-4">
+      <!-- To Do Section -->
+      <section>
+        <h2 class="text-lg font-semibold">To Do <span class="text-gray-500">| 3</span></h2>
+        <hr class="border-t-2 border-black mb-2">
+        <div class="space-y-2">
+          <div class="border border-red-400 p-3 rounded">
+            <p class="font-semibold"> presentation</p>
+            <div class="flex space-x-2 mt-2">
+              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+            </div>
+          </div>
+          
+        <div class="space-y-2">
+          <div class="border border-red-400 p-3 rounded">
+            <p class="font-semibold"> workshop</p>
+            <div class="flex space-x-2 mt-2">
+              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="border border-red-400 p-3 rounded">
+            <p class="font-semibold"> live coding</p>
+            <div class="flex space-x-2 mt-2">
+              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div id="in-progress" class="task-section bg-white rounded-lg shadow-lg p-4" data-status="In Progress">
-        <h2 class="text-xl font-semibold flex items-center text-yellow-600 border-b-2 border-black pb-2 mb-4">In Progress</h2>
-        <div class="space-y-4 task-list"></div>
-      </div>
+      <!-- In Progress Section -->
+      <section>
+        <h2 class="text-lg font-semibold">In Progress <span class="text-gray-500">| 1</span></h2>
+        <hr class="border-t-2 border-black mb-2">
+        <div class="space-y-2">
+          <div class="border border-blue-400 p-3 rounded">
+            <p class="font-semibold">sujet d'veille</p>
+            <div class="flex space-x-2 mt-2">
+              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="border border-blue-400 p-3 rounded">
+            <p class="font-semibold"> workshop DOM</p>
+            <div class="flex space-x-2 mt-2">
+              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+            </div>
+          </div>
+        </div>
+       
+        
+      </section>
 
-      <div id="done" class="task-section bg-white rounded-lg shadow-lg p-4" data-status="Done">
-        <h2 class="text-xl font-semibold flex items-center text-green-600 border-b-2 border-black pb-2 mb-4">Done</h2>
-        <div class="space-y-4 task-list"></div>
-      </div>
-    </section>
+      <!-- Done Section -->
+      <section>
+        <h2 class="text-lg font-semibold">Done <span class="text-gray-500">| 2</span></h2>
+        <hr class="border-t-2 border-black mb-2">
+        <div class="space-y-2">
+          <div class="border border-red-400 p-3 rounded">
+            <p class="font-semibold"> Quize</p>
+            <div class="flex space-x-2 mt-2">
+              <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <button class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+            </div>
+          </div>
+          <!-- Repeat similar structure for other Done tasks -->
+        </div>
+      </section>
+    </div>
   </div>
-
- 
-
-  
-  <script src="action.js"></script>
 </body>
 </html>
