@@ -23,13 +23,10 @@
         <h2 class="text-red-500 font-semibold">To Do <span class="text-gray-500">| </span></h2>
         <hr class="border-t-2 border-red-400 mb-4">
         <div class="space-y-2" id="todo-tasks">
-          <!-- Example Task -->
-          <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDetails(this)">
+          <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDescription(this)">
             <p class="task-title font-semibold">Presentation</p>
-            <p class="task-due-date text-sm text-gray-500">Due Date: 2023-11-01</p>
-            <div class="hidden task-details">
-              <p class="task-description text-sm text-gray-500">Presentation details</p>
-            </div>
+            <p class="task-due-date text-sm text-gray-500">2023-11-01</p>
+            <p class="task-description hidden">Presentation details</p>
             <div class="flex space-x-2 mt-2">
               <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400">Delete</button>
               <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
@@ -43,13 +40,10 @@
         <h2 class="text-orange-300 font-semibold">In Progress <span class="text-gray-500">| </span></h2>
         <hr class="border-t-2 border-yellow-400 mb-4">
         <div class="space-y-2" id="inprogress-tasks">
-          <!-- Example Task -->
-          <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDetails(this)">
+          <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDescription(this)">
             <p class="task-title font-semibold">Workshop</p>
-            <p class="task-due-date text-sm text-gray-500">Due Date: 2023-11-02</p>
-            <div class="hidden task-details">
-              <p class="task-description text-sm text-gray-500">Workshop details</p>
-            </div>
+            <p class="task-due-date text-sm text-gray-500">2023-11-02</p>
+            <p class="task-description hidden">Workshop details</p>
             <div class="flex space-x-2 mt-2">
               <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400">Delete</button>
               <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
@@ -63,15 +57,12 @@
         <h2 class="text-green-600 font-semibold">Done <span class="text-gray-500">| </span></h2>
         <hr class="border-t-2 border-green-400 mb-4">
         <div class="space-y-2" id="done-tasks">
-          <!-- Example Task -->
-          <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDetails(this)">
+          <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDescription(this)">
             <p class="task-title font-semibold">Planning</p>
-            <p class="task-due-date text-sm text-gray-500">Due Date: 2023-11-03</p>
-            <div class="hidden task-details">
-              <p class="task-description text-sm text-gray-500">Planning details</p>
-            </div>
+            <p class="task-due-date text-sm text-gray-500">2023-11-03</p>
+            <p class="task-description hidden">Planning details</p>
             <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400">Delete</button>
+              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-slate-400">Delete</button>
               <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
             </div>
           </div>
@@ -80,7 +71,7 @@
     </section>
   </section>
 
-  <!-- Modal for Adding Tasks -->
+  <!-- Modal -->
   <section id="taskModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
     <div class="bg-white p-6 rounded shadow-lg w-96">
       <h2 class="text-lg font-semibold mb-4">Add New Task</h2>
@@ -92,6 +83,14 @@
         <div class="mb-4">
           <label for="taskDescription" class="block text-sm font-medium text-gray-700">Description</label>
           <textarea id="taskDescription" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="taskStatus" class="block text-sm font-medium text-gray-700">Status</label>
+          <select id="taskStatus" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
         </div>
         <div class="mb-4">
           <label for="taskDueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
@@ -113,7 +112,7 @@
     </div>
   </section>
 
-  <!-- Modal for Editing Tasks -->
+  <!-- Edit Modal -->
   <section id="editTaskModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
     <div class="bg-white p-6 rounded shadow-lg w-96">
       <h2 class="text-lg font-semibold mb-4">Edit Task</h2>
@@ -125,6 +124,14 @@
         <div class="mb-4">
           <label for="editTaskDescription" class="block text-sm font-medium text-gray-700">Description</label>
           <textarea id="editTaskDescription" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="editTaskStatus" class="block text-sm font-medium text-gray-700">Status</label>
+          <select id="editTaskStatus" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
         </div>
         <div class="mb-4">
           <label for="editTaskDueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
@@ -145,7 +152,6 @@
       </form>
     </div>
   </section>
-
   <script src="action.js"></script>
 </body>
 </html>
