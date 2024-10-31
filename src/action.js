@@ -1,5 +1,5 @@
- // Open and close modals
- function openModal() {
+// Ouvrir et fermer les modales
+function openModal() {
   document.getElementById('taskModal').classList.remove('hidden');
 }
 
@@ -35,7 +35,7 @@ function openEditModal(taskElement) {
 
     document.getElementById(newStatus).appendChild(taskElement);
     closeEditModal();
-    updateStatistics(); // Update statistics after editing
+    updateStatistics(); // Mettre à jour les statistiques après l'édition
   };
 
   document.getElementById('editTaskModal').classList.remove('hidden');
@@ -45,7 +45,7 @@ function closeEditModal() {
   document.getElementById('editTaskModal').classList.add('hidden');
 }
 
-// Add new task
+// Ajouter une nouvelle tâche
 document.getElementById('taskForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
@@ -79,23 +79,22 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
 
   closeModal();
   event.target.reset();
-  updateStatistics(); // Update statistics after adding a new task
+  updateStatistics(); // Mettre à jour les statistiques après l'ajout d'une nouvelle tâche
 });
 
-// Toggle description visibility
+// Basculer la visibilité de la description
 function toggleDescription(taskElement) {
   const description = taskElement.querySelector('.task-description');
   description.classList.toggle('hidden');
 }
 
-// Function to delete a task
+// Fonction pour supprimer une tâche
 function deleteTask(taskElement) {
-  const parent = taskElement.parentNode; // Get the parent (the tasks section)
-  parent.removeChild(taskElement); // Remove the task element
-  updateStatistics(); // Update statistics after deletion
+  taskElement.remove(); // Supprimer l'élément de tâche
+  updateStatistics(); // Mettre à jour les statistiques après la suppression
 }
 
-// Function to update statistics
+// Fonction pour mettre à jour les statistiques
 function updateStatistics() {
   const todoCount = document.getElementById('todo-tasks').children.length;
   const inprogressCount = document.getElementById('inprogress-tasks').children.length;
