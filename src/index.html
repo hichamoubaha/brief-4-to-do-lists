@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To Do List</title>
+  <title>To-do list</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -15,12 +15,12 @@
       <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1" />
       <button class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black">Add Multiple +</button>
     </div>
-    <br>
+
     <!-- Task Sections -->
     <section class="grid grid-cols-3 gap-4">
       <!-- To Do Section -->
       <div>
-        <h2 class="text-red-500 font-semibold">To Do <span class="text-gray-500">| </span></h2>
+        <h2 class="text-red-500 font-semibold">To Do <span id="todoCount" class="text-gray-500"> (0)</span></h2>
         <hr class="border-t-2 border-red-400 mb-4">
         <div class="space-y-2" id="todo-tasks">
           <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDescription(this)">
@@ -28,7 +28,7 @@
             <p class="task-due-date text-sm text-gray-500">2023-11-01</p>
             <p class="task-description hidden">Presentation details</p>
             <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400">Delete</button>
+              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400" onclick="deleteTask(this.closest('.border'))">Delete</button>
               <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
             </div>
           </div>
@@ -37,7 +37,7 @@
 
       <!-- In Progress Section -->
       <div>
-        <h2 class="text-orange-300 font-semibold">In Progress <span class="text-gray-500">| </span></h2>
+        <h2 class="text-orange-300 font-semibold">In Progress <span id="inprogressCount" class="text-gray-500"> (0)</span></h2>
         <hr class="border-t-2 border-yellow-400 mb-4">
         <div class="space-y-2" id="inprogress-tasks">
           <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDescription(this)">
@@ -45,7 +45,7 @@
             <p class="task-due-date text-sm text-gray-500">2023-11-02</p>
             <p class="task-description hidden">Workshop details</p>
             <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400">Delete</button>
+              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400" onclick="deleteTask(this.closest('.border'))">Delete</button>
               <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
             </div>
           </div>
@@ -54,7 +54,7 @@
 
       <!-- Done Section -->
       <div>
-        <h2 class="text-green-600 font-semibold">Done <span class="text-gray-500">| </span></h2>
+        <h2 class="text-green-600 font-semibold">Done <span id="doneCount" class="text-gray-500"> (0)</span></h2>
         <hr class="border-t-2 border-green-400 mb-4">
         <div class="space-y-2" id="done-tasks">
           <div class="border border-black p-3 rounded cursor-pointer" onclick="toggleDescription(this)">
@@ -62,7 +62,7 @@
             <p class="task-due-date text-sm text-gray-500">2023-11-03</p>
             <p class="task-description hidden">Planning details</p>
             <div class="flex space-x-2 mt-2">
-              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-slate-400">Delete</button>
+              <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-slate-400" onclick="deleteTask(this.closest('.border'))">Delete</button>
               <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
             </div>
           </div>
@@ -152,6 +152,8 @@
       </form>
     </div>
   </section>
+
+
   <script src="action.js"></script>
 </body>
 </html>

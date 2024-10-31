@@ -35,6 +35,7 @@ function openEditModal(taskElement) {
 
     document.getElementById(newStatus).appendChild(taskElement);
     closeEditModal();
+    updateStatistics(); // Update statistics after editing
   };
 
   document.getElementById('editTaskModal').classList.remove('hidden');
@@ -55,7 +56,7 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
   const priority = document.getElementById('taskPriority').value;
 
   const taskElement = document.createElement('div');
-  taskElement.classList.add('border', 'p-3', 'rounded', 'mb-2', 'cursor-pointer'); // Added cursor-pointer class
+  taskElement.classList.add('border', 'p-3', 'rounded', 'mb-2', 'cursor-pointer');
   if (priority === 'P1') taskElement.classList.add('border-red-400');
   else if (priority === 'P2') taskElement.classList.add('border-yellow-400');
   else taskElement.classList.add('border-green-400');
@@ -65,7 +66,7 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
     <p class="task-due-date text-sm text-gray-500">${dueDate}</p>
     <p class="task-description hidden">${description}</p>
     <div class="flex space-x-2 mt-2">
-      <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400">Delete</button>
+      <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400" onclick="deleteTask(this.closest('.border'))">Delete</button>
       <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
     </div>
   `;
@@ -78,10 +79,29 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
 
   closeModal();
   event.target.reset();
+  updateStatistics(); // Update statistics after adding a new task
 });
 
 // Toggle description visibility
 function toggleDescription(taskElement) {
   const description = taskElement.querySelector('.task-description');
   description.classList.toggle('hidden');
+}
+
+// Function to delete a task
+function deleteTask(taskElement) {
+  const parent = taskElement.parentNode; // Get the parent (the tasks section)
+  parent.removeChild(taskElement); // Remove the task element
+  updateStatistics(); // Update statistics after deletion
+}
+
+// Function to update statistics
+function updateStatistics() {
+  const todoCount = document.getElementById('todo-tasks').children.length;
+  const inprogressCount = document.getElementById('inprogress-tasks').children.length;
+  const doneCount = document.getElementById('done-tasks').children.length;
+
+  document.getElementById('todoCount').innerText = `(${todoCount})`;
+  document.getElementById('inprogressCount').innerText = `(${inprogressCount})`;
+  document.getElementById('doneCount').innerText = `(${doneCount})`;
 }
