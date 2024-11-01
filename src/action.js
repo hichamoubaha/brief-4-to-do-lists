@@ -7,6 +7,44 @@ function closeModal() {
   document.getElementById('taskModal').classList.add('hidden');
 }
 
+// Ajouter une nouvelle tâche
+document.getElementById('taskForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const title = document.getElementById('taskTitle').value;
+  const description = document.getElementById('taskDescription').value;
+  const status = document.getElementById('taskStatus').value;
+  const dueDate = document.getElementById('taskDueDate').value;
+  const priority = document.getElementById('taskPriority').value;
+
+  const taskElement = document.createElement('div');
+  taskElement.classList.add('border', 'p-3', 'rounded', 'mb-2', 'cursor-pointer');
+  if (priority === 'P1') taskElement.classList.add('border-red-400');
+  else if (priority === 'P2') taskElement.classList.add('border-yellow-400');
+  else taskElement.classList.add('border-green-400');
+
+  taskElement.innerHTML = `
+    <p class="task-title font-semibold">${title}</p>
+    <p class="task-due-date text-sm text-gray-500">${dueDate}</p>
+    <p class="task-description hidden">${description}</p>
+    <div class="flex space-x-2 mt-2">
+      <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400" onclick="deleteTask(this.closest('.border'))">Delete</button>
+      <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
+    </div>
+  `;
+
+  taskElement.onclick = function () {
+    toggleDescription(taskElement);
+  };
+
+  document.getElementById(`${status}-tasks`).appendChild(taskElement);
+
+  closeModal();
+  event.target.reset();
+  updateStatistics(); // Mettre à jour les statistiques après l'ajout d'une nouvelle tâche
+});
+
+
 function openEditModal(taskElement) {
   const taskTitle = taskElement.querySelector('.task-title').innerText;
   const taskDescription = taskElement.querySelector('.task-description').innerText;
@@ -44,43 +82,6 @@ function openEditModal(taskElement) {
 function closeEditModal() {
   document.getElementById('editTaskModal').classList.add('hidden');
 }
-
-// Ajouter une nouvelle tâche
-document.getElementById('taskForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const title = document.getElementById('taskTitle').value;
-  const description = document.getElementById('taskDescription').value;
-  const status = document.getElementById('taskStatus').value;
-  const dueDate = document.getElementById('taskDueDate').value;
-  const priority = document.getElementById('taskPriority').value;
-
-  const taskElement = document.createElement('div');
-  taskElement.classList.add('border', 'p-3', 'rounded', 'mb-2', 'cursor-pointer');
-  if (priority === 'P1') taskElement.classList.add('border-red-400');
-  else if (priority === 'P2') taskElement.classList.add('border-yellow-400');
-  else taskElement.classList.add('border-green-400');
-
-  taskElement.innerHTML = `
-    <p class="task-title font-semibold">${title}</p>
-    <p class="task-due-date text-sm text-gray-500">${dueDate}</p>
-    <p class="task-description hidden">${description}</p>
-    <div class="flex space-x-2 mt-2">
-      <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400" onclick="deleteTask(this.closest('.border'))">Delete</button>
-      <button class="bg-blue-400 text-white px-7 py-1 rounded hover:bg-blue-800" onclick="openEditModal(this.closest('.border'))">Edit</button>
-    </div>
-  `;
-
-  taskElement.onclick = function () {
-    toggleDescription(taskElement);
-  };
-
-  document.getElementById(`${status}-tasks`).appendChild(taskElement);
-
-  closeModal();
-  event.target.reset();
-  updateStatistics(); // Mettre à jour les statistiques après l'ajout d'une nouvelle tâche
-});
 
 // Basculer la visibilité de la description
 function toggleDescription(taskElement) {
