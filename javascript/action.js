@@ -10,6 +10,7 @@ function closeModal() {
 // Ajouter une nouvelle tâche
 document.getElementById('taskForm').addEventListener('submit', function(event) {
   event.preventDefault();
+  if (!validateTaskForm('taskForm')) return;
 
   const title = document.getElementById('taskTitle').value;
   const description = document.getElementById('taskDescription').value;
@@ -44,7 +45,7 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
   updateStatistics(); // Mettre à jour les statistiques après l'ajout d'une nouvelle tâche
 });
 
-
+//modifier une taches
 function openEditModal(taskElement) {
   const taskTitle = taskElement.querySelector('.task-title').innerText;
   const taskDescription = taskElement.querySelector('.task-description').innerText;
@@ -104,4 +105,20 @@ function updateStatistics() {
   document.getElementById('todoCount').innerText = `(${todoCount})`;
   document.getElementById('inprogressCount').innerText = `(${inprogressCount})`;
   document.getElementById('doneCount').innerText = `(${doneCount})`;
+}
+// Fonction de validation
+function validateTaskForm(formId) {
+  const form = document.getElementById(formId);
+  const dueDate = form.querySelector('input[type="date"]').value;
+
+  const dueDateObj = new Date(dueDate);
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+
+  if (dueDateObj < currentDate) {
+    alert('La date ne peut pas être dans le passé.');
+    return false;
+  }
+
+  return true;
 }
