@@ -19,7 +19,7 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
   const priority = document.getElementById('taskPriority').value;
 
   const taskElement = document.createElement('div');
-  taskElement.classList.add('border', 'p-3', 'rounded', 'mb-2', 'cursor-pointer');
+  taskElement.classList.add('border', 'p-3', 'rounded', 'mb-2', 'cursor-pointer', 'fade-in');
   if (priority === 'P1') taskElement.classList.add('border-red-400');
   else if (priority === 'P2') taskElement.classList.add('border-yellow-400');
   else taskElement.classList.add('border-green-400');
@@ -45,7 +45,7 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
   updateStatistics(); // Mettre à jour les statistiques après l'ajout d'une nouvelle tâche
 });
 
-//modifier une taches
+// Modifier une tâche
 function openEditModal(taskElement) {
   const taskTitle = taskElement.querySelector('.task-title').innerText;
   const taskDescription = taskElement.querySelector('.task-description').innerText;
@@ -92,8 +92,11 @@ function toggleDescription(taskElement) {
 
 // Fonction pour supprimer une tâche
 function deleteTask(taskElement) {
-  taskElement.remove(); // Supprimer l'élément de tâche
-  updateStatistics(); // Mettre à jour les statistiques après la suppression
+  taskElement.classList.add('fade-out'); // Add fade-out class for animation
+  taskElement.addEventListener('animationend', function () {
+    taskElement.remove(); // Supprimer l'élément de tâche après l'animation
+    updateStatistics(); // Mettre à jour les statistiques après la suppression
+  });
 }
 
 // Fonction pour mettre à jour les statistiques
@@ -106,6 +109,7 @@ function updateStatistics() {
   document.getElementById('inprogressCount').innerText = `(${inprogressCount})`;
   document.getElementById('doneCount').innerText = `(${doneCount})`;
 }
+
 // Fonction de validation
 function validateTaskForm(formId) {
   const form = document.getElementById(formId);
