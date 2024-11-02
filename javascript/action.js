@@ -94,8 +94,8 @@ function toggleDescription(taskElement) {
 function deleteTask(taskElement) {
   taskElement.classList.add('fade-out'); // Add fade-out class for animation
   taskElement.addEventListener('animationend', function () {
-    taskElement.remove(); // Supprimer l'élément de tâche après l'animation
-    updateStatistics(); // Mettre à jour les statistiques après la suppression
+    taskElement.remove();
+    updateStatistics(); 
   });
 }
 
