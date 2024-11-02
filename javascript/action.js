@@ -19,14 +19,14 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
   const priority = document.getElementById('taskPriority').value;
 
   const taskElement = document.createElement('div');
-  taskElement.classList.add('border', 'p-3', 'rounded', 'mb-2', 'cursor-pointer', 'fade-in');
+  taskElement.classList.add('border-2', 'p-3', 'rounded', 'mb-2', 'cursor-pointer', 'fade-in');
   if (priority === 'P1') taskElement.classList.add('border-red-400');
   else if (priority === 'P2') taskElement.classList.add('border-yellow-400');
   else taskElement.classList.add('border-green-400');
 
   taskElement.innerHTML = `
     <p class="task-title font-semibold">${title}</p>
-    <p class="task-due-date text-sm text-gray-500">${dueDate}</p>
+    <p class="task-due-date font-bold text-white">${dueDate}</p>
     <p class="task-description hidden">${description}</p>
     <div class="flex space-x-2 mt-2">
       <button class="bg-red-500 text-white px-7 py-1 rounded hover:bg-gray-400" onclick="deleteTask(this.closest('.border'))">Delete</button>
