@@ -3,26 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List</title>
+  <title>Tajriba</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="src/animation.css">
 </head>
-<body class="bg-white p-4">
+<body class="bg-gradient-to-r from-blue-200 to-blue-50 p-4">
+  <h1 class="text-center text-black font-bold text-3xl rounded-xl p-6 hover:bg-gradient-to-r from-cyan-300 to-white" > To Do List </h1>
+  <br>
+  <br>
   <section class="container mx-auto">
     <!-- Header with Add Task buttons -->
     <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-      <button onclick="openModal()" class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black mb-2 md:mb-0">Add Task +</button>
-      <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1 mb-2 md:mb-0 md:w-1/3" />
-      <button class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black">Add Multiple +</button>
+      <button onclick="openModal()" class="bg-gradient-to-r from-blue-400 to-violet-500 text-white font-bold px-4 py-2 rounded hover:bg-black mb-4">Add Task +</button>
+      <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1 mb-2 md:mb-0 md:w-1/3 mb-4" />
+      <button class="bg-gradient-to-r from-blue-400 to-violet-500 text-white font-bold px-4 py-2 rounded hover:bg-black mb-4">Add Multiple +</button>
     </div>
 
     <!-- Task Sections -->
     <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <!-- To Do Section -->
       <div>
-        <h2 class="text-red-500 font-semibold">To Do <span id="todoCount" class="text-gray-500"> (0)</span></h2>
-        <hr class="border-t-2 border-red-400 mb-4">
+        <h2 class="text-black font-semibold mb-4">To Do <span id="todoCount" class="text-black"> (0)</span></h2>
+        <hr class="border-t-2 border-black mb-4">
         <div class="space-y-2" id="todo-tasks">
           <!-- No initial tasks here -->
         </div>
@@ -30,8 +33,8 @@
 
       <!-- In Progress Section -->
       <div>
-        <h2 class="text-orange-300 font-semibold">In Progress <span id="inprogressCount" class="text-gray-500"> (0)</span></h2>
-        <hr class="border-t-2 border-yellow-400 mb-4">
+        <h2 class="text-black font-semibold mb-4">In Progress <span id="inprogressCount" class="text-black"> (0)</span></h2>
+        <hr class="border-t-2 border-black mb-4">
         <div class="space-y-2" id="inprogress-tasks">
           <!-- No initial tasks here -->
         </div>
@@ -39,8 +42,8 @@
 
       <!-- Done Section -->
       <div>
-        <h2 class="text-green-600 font-semibold">Done <span id="doneCount" class="text-gray-500"> (0)</span></h2>
-        <hr class="border-t-2 border-green-400 mb-4">
+        <h2 class="text-black font-semibold mb-4">Done <span id="doneCount" class="text-black"> (0)</span></h2>
+        <hr class="border-t-2 border-black mb-4">
         <div class="space-y-2" id="done-tasks">
           <!-- No initial tasks here -->
         </div>
