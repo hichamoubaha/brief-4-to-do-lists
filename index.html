@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do-list</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white p-4">
+  <section class="container mx-auto">
+    <!-- Header with Add Task buttons -->
+    <div class="flex justify-between items-center mb-6">
+      <button onclick="openModal()" class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black">Add Task +</button>
+      <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1" />
+      <button class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black">Add Multiple +</button>
+    </div>
+
+    <!-- Task Sections -->
+    <section class="grid grid-cols-3 gap-4">
+      <!-- To Do Section -->
+      <div>
+        <h2 class="text-red-500 font-semibold">To Do <span id="todoCount" class="text-gray-500"> (0)</span></h2>
+        <hr class="border-t-2 border-red-400 mb-4">
+        <div class="space-y-2" id="todo-tasks">
+          <!-- No initial tasks here -->
+        </div>
+      </div>
+
+      <!-- In Progress Section -->
+      <div>
+        <h2 class="text-orange-300 font-semibold">In Progress <span id="inprogressCount" class="text-gray-500"> (0)</span></h2>
+        <hr class="border-t-2 border-yellow-400 mb-4">
+        <div class="space-y-2" id="inprogress-tasks">
+          <!-- No initial tasks here -->
+        </div>
+      </div>
+
+      <!-- Done Section -->
+      <div>
+        <h2 class="text-green-600 font-semibold">Done <span id="doneCount" class="text-gray-500"> (0)</span></h2>
+        <hr class="border-t-2 border-green-400 mb-4">
+        <div class="space-y-2" id="done-tasks">
+          <!-- No initial tasks here -->
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- Modal -->
+  <section id="taskModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded shadow-lg w-96">
+      <h2 class="text-lg font-semibold mb-4">Add New Task</h2>
+      <form id="taskForm">
+        <div class="mb-4">
+          <label for="taskTitle" class="block text-sm font-medium text-gray-700">Title</label>
+          <input type="text" id="taskTitle" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="taskDescription" class="block text-sm font-medium text-gray-700">Description</label>
+          <textarea id="taskDescription" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="taskStatus" class="block text-sm font-medium text-gray-700">Status</label>
+          <select id="taskStatus" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="taskDueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
+          <input type="date" id="taskDueDate" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="taskPriority" class="block text-sm font-medium text-gray-700">Priority</label>
+          <select id="taskPriority" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="P1" class="text-red-500">P1</option>
+            <option value="P2" class="text-yellow-500">P2</option>
+            <option value="P3" class="text-green-500">P3</option>
+          </select>
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button type="button" onclick="closeModal()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancel</button>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Edit Modal -->
+  <section id="editTaskModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded shadow-lg w-96">
+      <h2 class="text-lg font-semibold mb-4">Edit Task</h2>
+      <form id="editTaskForm">
+        <div class="mb-4">
+          <label for="editTaskTitle" class="block text-sm font-medium text-gray-700">Title</label>
+          <input type="text" id="editTaskTitle" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="editTaskDescription" class="block text-sm font-medium text-gray-700">Description</label>
+          <textarea id="editTaskDescription" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="editTaskStatus" class="block text-sm font-medium text-gray-700">Status</label>
+          <select id="editTaskStatus" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="editTaskDueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
+          <input type="date" id="editTaskDueDate" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="editTaskPriority" class="block text-sm font-medium text-gray-700">Priority</label>
+          <select id="editTaskPriority" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="P1" class="text-red-500">P1</option>
+            <option value="P2" class="text-yellow-500">P2</option>
+            <option value="P3" class="text-green-500">P3</option>
+          </select>
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button type="button" onclick="closeEditModal()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancel</button>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <script src="javascript/action.js"></script>
+</body>
+</html>
