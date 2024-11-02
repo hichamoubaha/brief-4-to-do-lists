@@ -19,7 +19,7 @@ document.getElementById('taskForm').addEventListener('submit', function(event) {
   const priority = document.getElementById('taskPriority').value;
 
   const taskElement = document.createElement('div');
-  taskElement.classList.add('border-2', 'p-3', 'rounded', 'mb-2', 'cursor-pointer', 'fade-in');
+  taskElement.classList.add('border', 'border-2', 'p-3', 'rounded', 'mb-2', 'cursor-pointer', 'fade-in');
   if (priority === 'P1') taskElement.classList.add('border-red-400');
   else if (priority === 'P2') taskElement.classList.add('border-yellow-400');
   else taskElement.classList.add('border-green-400');
