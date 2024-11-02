@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do-list</title>
+  <title>To-Do List</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="src/animation.css">
@@ -11,14 +11,14 @@
 <body class="bg-white p-4">
   <section class="container mx-auto">
     <!-- Header with Add Task buttons -->
-    <div class="flex justify-between items-center mb-6">
-      <button onclick="openModal()" class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black">Add Task +</button>
-      <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1" />
+    <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+      <button onclick="openModal()" class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black mb-2 md:mb-0">Add Task +</button>
+      <input type="text" placeholder="Search..." class="border border-gray-300 rounded px-3 py-1 mb-2 md:mb-0 md:w-1/3" />
       <button class="bg-green-300 text-white px-4 py-2 rounded hover:bg-black">Add Multiple +</button>
     </div>
 
     <!-- Task Sections -->
-    <section class="grid grid-cols-3 gap-4">
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <!-- To Do Section -->
       <div>
         <h2 class="text-red-500 font-semibold">To Do <span id="todoCount" class="text-gray-500"> (0)</span></h2>
@@ -50,7 +50,7 @@
 
   <!-- Modal -->
   <section id="taskModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded shadow-lg w-96">
+    <div class="bg-white p-6 rounded shadow-lg w-11/12 md:w-96">
       <h2 class="text-lg font-semibold mb-4">Add New Task</h2>
       <form id="taskForm">
         <div class="mb-4">
@@ -91,7 +91,7 @@
 
   <!-- Edit Modal -->
   <section id="editTaskModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded shadow-lg w-96">
+    <div class="bg-white p-6 rounded shadow-lg w-11/12 md:w-96">
       <h2 class="text-lg font-semibold mb-4">Edit Task</h2>
       <form id="editTaskForm">
         <div class="mb-4">
