@@ -42,9 +42,11 @@ La tâche sera supprimée de la liste.
   Captures d'Écran :
   
 Page d'Accueil
+
 <img width="955" alt="to do" src="https://github.com/user-attachments/assets/25cf8d5e-7836-41c6-9198-60a4e1db094e">
 
 Ajouter une Tâche
+
 <img width="303" alt="add task" src="https://github.com/user-attachments/assets/12d480c6-1b8b-464b-b380-86b34ee12cbe">
 
 Structure des Fichiers :
